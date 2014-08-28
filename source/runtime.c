@@ -63,10 +63,12 @@ _plugin_initialize (NPPluginFuncs* plugin)
 	return NPERR_NO_ERROR;
 }
 
-#ifdef __unix
+#ifdef XP_UNIX
 	PA_EXPORT(NPError)
 	NP_Initialize (NPNetscapeFuncs* browser, NPPluginFuncs* plugin)
 	{
+		LOG("NP_Initialize: called\n");
+
 		{
 			NPError error = _browser_initialize(browser);
 
@@ -116,11 +118,56 @@ _plugin_initialize (NPPluginFuncs* plugin)
 PA_EXPORT(NPError)
 NP_Shutdown (void)
 {
+	LOG("NP_Shutdown: called\n");
+
 	if (PA_Shutdown()) {
 		return NPERR_NO_ERROR;
 	}
 
 	return NPERR_GENERIC_ERROR;
+}
+
+PA_EXPORT(char*)
+NP_GetPluginVersion (void)
+{
+	LOG("NP_GetPluginVersion: %s\n", PA_Metadata()->version);
+
+	return (char*) PA_Metadata()->version;
+}
+
+PA_EXPORT(const char*)
+NP_GetMIMEDescription (void)
+{
+	LOG("NP_GetMIMEDescription: %s\n", PA_Metadata()->mime);
+
+	return PA_Metadata()->mime;
+}
+
+PA_EXPORT(NPError)
+NP_GetValue (void* plugin, NPPVariable type, void* value)
+{
+	(void) plugin;
+
+	LOG("NP_GetValue: %d\n", type);
+
+	switch (type) {
+		case NPPVpluginNameString:
+			*((char**) value) = (char*) PA_Metadata()->name;
+			break;
+
+		case NPPVpluginDescriptionString:
+			*((char**) value) = (char*) PA_Metadata()->description;
+			break;
+
+		case NPPVpluginWindowBool:
+			*((NPBool*) value) = false;
+			break;
+
+		default:
+			return NPERR_INVALID_PARAM;
+	}
+
+	return NPERR_NO_ERROR;
 }
 
 NPError
@@ -456,6 +503,5 @@ NPN_FinalizeAsyncSurface (NPP instance, NPAsyncSurface* surface)
 void
 NPN_SetCurrentAsyncSurface (NPP instance, NPAsyncSurface* surface, NPRect* changed)
 {
-
 	_browser->setcurrentasyncsurface(instance, surface, changed);
 }

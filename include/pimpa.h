@@ -17,7 +17,7 @@
 #include <npapi/npfunctions.h>
 #include <npapi/npruntime.h>
 
-#if defined(__unix)
+#if defined(XP_UNIX)
 /* GCC 3.3 and later support the visibility attribute. */
 #	if defined(__GNUC__) && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3))
 #		define PA_VISIBILITY_DEFAULT __attribute__((visibility("default")))
@@ -28,7 +28,7 @@
 #	endif
 #
 #	define PA_EXPORT(__type) PA_VISIBILITY_DEFAULT __type
-#elif defined(_WIN32)
+#elif defined(XP_WIN)
 #	define PA_EXPORT(__type) __type __declspec(dllexport)
 #endif
 
@@ -39,16 +39,24 @@ typedef struct PAMetadata {
 	const char* mime;
 } PAMetadata;
 
+PA_EXPORT(PAMetadata*) PA_Metadata (void);
+
 PA_EXPORT(bool) PA_Initialize (void);
 PA_EXPORT(bool) PA_Shutdown (void);
 
 PA_EXPORT(void*) PA_New (const char* mime, int argc, char* argn[], char* argv[]);
 PA_EXPORT(bool) PA_Destroy (void* self);
 
-PA_EXPORT(NPObject*) PA_Interface (NPP plugin, void* self);
+PA_EXPORT(NPObject*) PA_Interface (NPP plugin);
 
 PA_EXPORT(NPObject*) PA_Object (NPClass* klass, void* data);
 PA_EXPORT(void*) PA_Private (NPObject* object);
 PA_EXPORT(void*) PA_Self (NPP plugin);
+
+#define LOG(format, ...) { \
+	FILE* file = fopen("/tmp/test.log", "a"); \
+	fprintf(file, format, ## __VA_ARGS__); \
+	fclose(file); \
+}
 
 #endif
