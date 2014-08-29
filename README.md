@@ -65,8 +65,8 @@ the private data returned by `PA_New` as parameter, clean it up.
 instance is passed as parameter and it has to return an `NPObject*`, `NULL`
 signifies a failure.
 
-Helpers
--------
+Runtime helpers
+---------------
 There are few helpers to deal with the interface side of the plugin.
 
 ### `PA_Object`
@@ -97,3 +97,7 @@ with `PA_Object`.
 
 `PA_Self` is used to retrieve the private data from a plugin instance (aka the
 actual pimpa instance).
+
+### `NPN_StrDup`
+
+`NPN_StrDup` is used to duplicate a string for use with `STRINGZ_TO_NPVARIANT`.

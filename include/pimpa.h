@@ -35,4 +35,6 @@ void* PA_Private (NPObject* object);
 NPP PA_Plugin (NPObject* object);
 void* PA_Self (NPP plugin);
 
+char* NPN_StrDup (char* string);
+
 #endif

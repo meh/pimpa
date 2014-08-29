@@ -8,6 +8,7 @@
 
 #include <pimpa.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void
 _deallocate (NPObject* self)
@@ -178,4 +179,10 @@ void*
 PA_Self (NPP plugin)
 {
 	return plugin->pdata;
+}
+
+char*
+NPN_StrDup (char* string)
+{
+	return strcpy((char*) NPN_MemAlloc((strlen(string) + 1)), string);
 }
