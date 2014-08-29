@@ -9,12 +9,6 @@
 #include <pimpa.h>
 #include <stdlib.h>
 
-typedef struct PAObject {
-	NPObject super;
-	int      magic;
-	void*    data;
-} PAObject;
-
 static void
 _deallocate (NPObject* self)
 {
@@ -118,8 +112,15 @@ _construct (NPObject* self, const NPVariant* argv, uint32_t argc, NPVariant* res
 	return false;
 }
 
+typedef struct PAObject {
+	NPObject super;
+	int      magic;
+	NPP      plugin;
+	void*    data;
+} PAObject;
+
 NPObject*
-PA_Object (NPClass* klass, void* data)
+PA_Object (NPP plugin, NPClass* klass, void* data)
 {
 	PAObject* object = NPN_MemAlloc(sizeof(PAObject));
 
@@ -142,8 +143,9 @@ PA_Object (NPClass* klass, void* data)
 	object->super._class = klass;
 	object->super.referenceCount = 0;
 
-	object->magic = 0xDEADCA7;
-	object->data  = data;
+	object->magic  = 0xDEADCA7;
+	object->plugin = plugin;
+	object->data   = data;
 
 	return (NPObject*) object;
 }
@@ -158,6 +160,18 @@ PA_Private (NPObject* pointer)
 	}
 
 	return object->data;
+}
+
+NPP
+PA_Plugin (NPObject* pointer)
+{
+	PAObject* object = (PAObject*) pointer;
+
+	if (object->magic != 0xDEADCA7) {
+		return NULL;
+	}
+
+	return object->plugin;
 }
 
 void*
