@@ -92,7 +92,7 @@ _plugin_initialize (NPPluginFuncs* plugin)
 		return NPERR_NO_ERROR;
 	}
 #elif defined(XP_WIN)
-	NPError
+	NPError OSCALL
 	NP_Initialize (NPNetscapeFuncs* browser)
 	{
 		{
@@ -113,7 +113,7 @@ _plugin_initialize (NPPluginFuncs* plugin)
 	}
 #endif
 
-NPError
+NPError OSCALL
 NP_Shutdown (void)
 {
 	if (PA_Shutdown()) {
