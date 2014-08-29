@@ -151,3 +151,11 @@ NPP_SetValue (NPP plugin, NPNVariable variable, void* value)
 
   return NPERR_GENERIC_ERROR;
 }
+
+#if defined(XP_UNIX)
+	const char*
+	NPP_GetMIMEDescription (void)
+	{
+		return PA_Metadata()->mime;
+	}
+#endif
