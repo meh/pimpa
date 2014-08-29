@@ -17,21 +17,6 @@
 #include <npapi/npfunctions.h>
 #include <npapi/npruntime.h>
 
-#if defined(XP_UNIX)
-/* GCC 3.3 and later support the visibility attribute. */
-#	if defined(__GNUC__) && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3))
-#		define PA_VISIBILITY_DEFAULT __attribute__((visibility("default")))
-#	elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
-#		define PA_VISIBILITY_DEFAULT __global
-#	else
-#		define PA_VISIBILITY_DEFAULT
-#	endif
-#
-#	define PA_EXPORT(__type) PA_VISIBILITY_DEFAULT __type
-#elif defined(XP_WIN)
-#	define PA_EXPORT(__type) __type __declspec(dllexport)
-#endif
-
 typedef struct PAMetadata {
 	const char* name;
 	const char* description;
@@ -39,18 +24,18 @@ typedef struct PAMetadata {
 	const char* mime;
 } PAMetadata;
 
-PA_EXPORT(PAMetadata*) PA_Metadata (void);
+PAMetadata* PA_Metadata (void);
 
-PA_EXPORT(bool) PA_Initialize (void);
-PA_EXPORT(bool) PA_Shutdown (void);
+bool PA_Initialize (void);
+bool PA_Shutdown (void);
 
-PA_EXPORT(void*) PA_New (const char* mime, int argc, char* argn[], char* argv[]);
-PA_EXPORT(bool) PA_Destroy (void* self);
+void* PA_New (const char* mime, int argc, char* argn[], char* argv[]);
+bool PA_Destroy (void* self);
 
-PA_EXPORT(NPObject*) PA_Interface (NPP plugin);
+NPObject* PA_Interface (NPP plugin);
 
-PA_EXPORT(NPObject*) PA_Object (NPClass* klass, void* data);
-PA_EXPORT(void*) PA_Private (NPObject* object);
-PA_EXPORT(void*) PA_Self (NPP plugin);
+NPObject* PA_Object (NPClass* klass, void* data);
+void* PA_Private (NPObject* object);
+void* PA_Self (NPP plugin);
 
 #endif

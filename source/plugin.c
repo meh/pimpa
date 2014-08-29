@@ -11,7 +11,7 @@
 #include <npapi/npfunctions.h>
 #include <npapi/npruntime.h>
 
-PA_EXPORT(NPError)
+NPError
 NPP_New (NPMIMEType type, NPP plugin, uint16_t mode, int16_t argc, char* argn[], char* argv[], NPSavedData* saved)
 {
 	(void) mode;
@@ -30,7 +30,7 @@ NPP_New (NPMIMEType type, NPP plugin, uint16_t mode, int16_t argc, char* argn[],
 	return NPERR_NO_ERROR;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_Destroy (NPP plugin, NPSavedData** saved)
 {
 	(void) saved;
@@ -39,7 +39,7 @@ NPP_Destroy (NPP plugin, NPSavedData** saved)
 		NPERR_NO_ERROR : NPERR_GENERIC_ERROR;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_SetWindow (NPP plugin, NPWindow* window)
 {
 	(void) plugin;
@@ -48,7 +48,7 @@ NPP_SetWindow (NPP plugin, NPWindow* window)
 	return NPERR_GENERIC_ERROR;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_NewStream (NPP plugin, NPMIMEType type, NPStream* stream, NPBool seekable, uint16_t* stype)
 {
 	(void) plugin;
@@ -60,7 +60,7 @@ NPP_NewStream (NPP plugin, NPMIMEType type, NPStream* stream, NPBool seekable, u
 	return NPERR_GENERIC_ERROR;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_DestroyStream (NPP plugin, NPStream* stream, NPReason reason)
 {
 	(void) plugin;
@@ -70,7 +70,7 @@ NPP_DestroyStream (NPP plugin, NPStream* stream, NPReason reason)
   return NPERR_GENERIC_ERROR;
 }
 
-PA_EXPORT(int32_t)
+int32_t
 NPP_WriteReady (NPP plugin, NPStream* stream)
 {
 	(void) plugin;
@@ -79,7 +79,7 @@ NPP_WriteReady (NPP plugin, NPStream* stream)
   return 0;
 }
 
-PA_EXPORT(int32_t)
+int32_t
 NPP_Write (NPP plugin, NPStream* stream, int32_t offset, int32_t len, void* buffer)
 {
 	(void) plugin;
@@ -91,7 +91,7 @@ NPP_Write (NPP plugin, NPStream* stream, int32_t offset, int32_t len, void* buff
   return 0;
 }
 
-PA_EXPORT(void)
+void
 NPP_StreamAsFile (NPP plugin, NPStream* stream, const char* fname)
 {
 	(void) plugin;
@@ -99,14 +99,14 @@ NPP_StreamAsFile (NPP plugin, NPStream* stream, const char* fname)
 	(void) fname;
 }
 
-PA_EXPORT(void)
+void
 NPP_Print (NPP plugin, NPPrint* platformPrint)
 {
 	(void) plugin;
 	(void) platformPrint;
 }
 
-PA_EXPORT(int16_t)
+int16_t
 NPP_HandleEvent (NPP plugin, void* event)
 {
 	(void) plugin;
@@ -115,7 +115,7 @@ NPP_HandleEvent (NPP plugin, void* event)
   return 0;
 }
 
-PA_EXPORT(void)
+void
 NPP_URLNotify (NPP plugin, const char* url, NPReason reason, void* notifyData)
 {
 	(void) plugin;
@@ -124,7 +124,7 @@ NPP_URLNotify (NPP plugin, const char* url, NPReason reason, void* notifyData)
 	(void) notifyData;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_GetValue (NPP plugin, NPPVariable type, void* value)
 {
 	switch (type) {
@@ -142,7 +142,7 @@ NPP_GetValue (NPP plugin, NPPVariable type, void* value)
   return NPERR_NO_ERROR;
 }
 
-PA_EXPORT(NPError)
+NPError
 NPP_SetValue (NPP plugin, NPNVariable variable, void* value)
 {
 	(void) plugin;

@@ -118,7 +118,7 @@ _construct (NPObject* self, const NPVariant* argv, uint32_t argc, NPVariant* res
 	return false;
 }
 
-PA_EXPORT(NPObject*)
+NPObject*
 PA_Object (NPClass* klass, void* data)
 {
 	PAObject* object = NPN_MemAlloc(sizeof(PAObject));
@@ -148,7 +148,7 @@ PA_Object (NPClass* klass, void* data)
 	return (NPObject*) object;
 }
 
-PA_EXPORT(void*)
+void*
 PA_Private (NPObject* pointer)
 {
 	PAObject* object = (PAObject*) pointer;
@@ -160,7 +160,7 @@ PA_Private (NPObject* pointer)
 	return object->data;
 }
 
-PA_EXPORT(void*)
+void*
 PA_Self (NPP plugin)
 {
 	return plugin->pdata;

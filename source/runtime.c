@@ -64,7 +64,7 @@ _plugin_initialize (NPPluginFuncs* plugin)
 }
 
 #ifdef XP_UNIX
-	PA_EXPORT(NPError)
+	NPError
 	NP_Initialize (NPNetscapeFuncs* browser, NPPluginFuncs* plugin)
 	{
 		{
@@ -91,12 +91,12 @@ _plugin_initialize (NPPluginFuncs* plugin)
 
 		return NPERR_NO_ERROR;
 	}
-#else
-	PA_EXPORT(NPError)
+#elif defined(XP_WIN)
+	NPError
 	NP_Initialize (NPNetscapeFuncs* browser)
 	{
 		{
-			NPError error = _initialize(browser);
+			NPError error = _browser_initialize(browser);
 
 			if (error != NPERR_NO_ERROR) {
 				return error;
@@ -113,7 +113,7 @@ _plugin_initialize (NPPluginFuncs* plugin)
 	}
 #endif
 
-PA_EXPORT(NPError)
+NPError
 NP_Shutdown (void)
 {
 	if (PA_Shutdown()) {
@@ -123,19 +123,19 @@ NP_Shutdown (void)
 	return NPERR_GENERIC_ERROR;
 }
 
-PA_EXPORT(char*)
+char*
 NP_GetPluginVersion (void)
 {
 	return (char*) PA_Metadata()->version;
 }
 
-PA_EXPORT(const char*)
+const char*
 NP_GetMIMEDescription (void)
 {
 	return PA_Metadata()->mime;
 }
 
-PA_EXPORT(NPError)
+NPError
 NP_GetValue (void* plugin, NPPVariable type, void* value)
 {
 	(void) plugin;

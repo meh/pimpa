@@ -26,19 +26,19 @@ typedef struct Private {
 	int number;
 } Private;
 
-PA_EXPORT(bool)
+bool
 PA_Initialize (void)
 {
 	return true;
 }
 
-PA_EXPORT(bool)
+bool
 PA_Shutdown (void)
 {
 	return true;
 }
 
-PA_EXPORT(void*)
+void*
 PA_New (const char* mime, int argc, char* argn[], char* argv[])
 {
 	(void) mime;
@@ -52,7 +52,7 @@ PA_New (const char* mime, int argc, char* argn[], char* argv[])
 	return self;
 }
 
-PA_EXPORT(bool)
+bool
 PA_Destroy (void* pointer)
 {
 	NPN_MemFree(pointer);
@@ -115,7 +115,7 @@ struct NPClass Class = {
 	.invokeDefault = Class_InvokeDefault,
 };
 
-PA_EXPORT(NPObject*)
+NPObject*
 PA_Interface (NPP plugin)
 {
 	return NPN_CreateObject(plugin, &Class);
