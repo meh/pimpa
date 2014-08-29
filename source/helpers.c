@@ -18,7 +18,7 @@ typedef struct PAObject {
 static void
 _deallocate (NPObject* self)
 {
-	(void) self;
+	NPN_MemFree(self);
 }
 
 static void
@@ -121,7 +121,7 @@ _construct (NPObject* self, const NPVariant* argv, uint32_t argc, NPVariant* res
 PA_EXPORT(NPObject*)
 PA_Object (NPClass* klass, void* data)
 {
-	PAObject* object = malloc(sizeof(PAObject));
+	PAObject* object = NPN_MemAlloc(sizeof(PAObject));
 
 	if (klass->structVersion == 0) {
 		klass->structVersion = NP_CLASS_STRUCT_VERSION;

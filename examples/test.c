@@ -46,7 +46,7 @@ PA_New (const char* mime, int argc, char* argn[], char* argv[])
 	(void) argn;
 	(void) argv;
 
-	Private* self = (Private*) malloc(sizeof(Private));
+	Private* self = (Private*) NPN_MemAlloc(sizeof(Private));
 	self->number  = 42;
 
 	return self;
@@ -55,7 +55,7 @@ PA_New (const char* mime, int argc, char* argn[], char* argv[])
 PA_EXPORT(bool)
 PA_Destroy (void* pointer)
 {
-	free(pointer);
+	NPN_MemFree(pointer);
 
 	return true;
 }
