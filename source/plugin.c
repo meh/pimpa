@@ -152,6 +152,52 @@ NPP_SetValue (NPP plugin, NPNVariable variable, void* value)
   return NPERR_GENERIC_ERROR;
 }
 
+NPBool
+NPP_GotFocus (NPP plugin, NPFocusDirection direction)
+{
+	(void) plugin;
+	(void) direction;
+
+	return false;
+}
+
+void
+NPP_LostFocus (NPP plugin)
+{
+	(void) plugin;
+}
+
+void
+NPP_URLRedirectNotify (NPP plugin, const char* url, int32_t status, void* notifyData)
+{
+	(void) plugin;
+	(void) url;
+	(void) status;
+	(void) notifyData;
+}
+
+NPError
+NPP_ClearSiteData (const char* site, uint64_t flags, uint64_t maxAge)
+{
+	(void) site;
+	(void) flags;
+	(void) maxAge;
+
+	return NPERR_GENERIC_ERROR;
+}
+
+char**
+NPP_GetSitesWithData (void)
+{
+	return NULL;
+}
+
+void
+NPP_DidComposite (NPP plugin)
+{
+	(void) plugin;
+}
+
 #if defined(XP_UNIX)
 	const char*
 	NPP_GetMIMEDescription (void)

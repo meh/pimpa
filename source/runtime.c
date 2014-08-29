@@ -46,19 +46,25 @@ _plugin_initialize (NPPluginFuncs* plugin)
 		return NPERR_INVALID_FUNCTABLE_ERROR;
 	}
 
-	plugin->newp          = NPP_New;
-	plugin->destroy       = NPP_Destroy;
-	plugin->setwindow     = NPP_SetWindow;
-	plugin->newstream     = NPP_NewStream;
-	plugin->destroystream = NPP_DestroyStream;
-	plugin->asfile        = NPP_StreamAsFile;
-	plugin->writeready    = NPP_WriteReady;
-	plugin->write         = NPP_Write;
-	plugin->print         = NPP_Print;
-	plugin->event         = NPP_HandleEvent;
-	plugin->urlnotify     = NPP_URLNotify;
-	plugin->getvalue      = NPP_GetValue;
-	plugin->setvalue      = NPP_SetValue;
+	plugin->newp              = NPP_New;
+	plugin->destroy           = NPP_Destroy;
+	plugin->setwindow         = NPP_SetWindow;
+	plugin->newstream         = NPP_NewStream;
+	plugin->destroystream     = NPP_DestroyStream;
+	plugin->asfile            = NPP_StreamAsFile;
+	plugin->writeready        = NPP_WriteReady;
+	plugin->write             = NPP_Write;
+	plugin->print             = NPP_Print;
+	plugin->event             = NPP_HandleEvent;
+	plugin->urlnotify         = NPP_URLNotify;
+	plugin->getvalue          = NPP_GetValue;
+	plugin->setvalue          = NPP_SetValue;
+	plugin->gotfocus          = NPP_GotFocus;
+	plugin->lostfocus         = NPP_LostFocus;
+	plugin->urlredirectnotify = NPP_URLRedirectNotify;
+	plugin->clearsitedata     = NPP_ClearSiteData;
+	plugin->getsiteswithdata  = NPP_GetSitesWithData;
+	plugin->didComposite      = NPP_DidComposite;
 
 	return NPERR_NO_ERROR;
 }
