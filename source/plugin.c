@@ -7,9 +7,7 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
 #include <pimpa.h>
-#include <npapi/npapi.h>
-#include <npapi/npfunctions.h>
-#include <npapi/npruntime.h>
+#include <stdlib.h>
 
 NPError
 NPP_New (NPMIMEType type, NPP plugin, uint16_t mode, int16_t argc, char* argn[], char* argv[], NPSavedData* saved)
@@ -130,6 +128,11 @@ NPP_GetValue (NPP plugin, NPPVariable type, void* value)
 	switch (type) {
 		case NPPVpluginScriptableNPObject: {
 			NPObject* object = PA_Interface(plugin);
+
+			if (object == NULL) {
+				return NPERR_GENERIC_ERROR;
+			}
+
 			NPN_RetainObject(object);
 
 			*((NPObject**) value) = object;
