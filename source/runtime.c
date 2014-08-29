@@ -63,7 +63,7 @@ _plugin_initialize (NPPluginFuncs* plugin)
 	return NPERR_NO_ERROR;
 }
 
-#ifdef XP_UNIX
+#if defined(XP_UNIX)
 	NPError
 	NP_Initialize (NPNetscapeFuncs* browser, NPPluginFuncs* plugin)
 	{
@@ -106,6 +106,20 @@ _plugin_initialize (NPPluginFuncs* plugin)
 		{
 			if (!PA_Initialize()) {
 				return NPERR_GENERIC_ERROR;
+			}
+		}
+
+		return NPERR_NO_ERROR;
+	}
+
+	NPError OSCALL
+	NP_GetEntryPoints (NPPluginFuncs* plugin)
+	{
+		{
+			NPError error = _plugin_initialize(plugin);
+
+			if (error != NPERR_NO_ERROR) {
+				return error;
 			}
 		}
 
