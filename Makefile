@@ -1,6 +1,6 @@
 CC     = gcc
 AR     = ar
-CFLAGS = -Wall -Iinclude -fPIC -DXP_UNIX=1 -g
+CFLAGS = -fPIC -DXP_UNIX=1 -g
 
 SOURCES = source/helpers.c source/plugin.c source/runtime.c
 OBJECTS = $(SOURCES:.c=.o)
@@ -13,7 +13,7 @@ $(LIBRARY) : $(OBJECTS)
 	$(AR) rcs $(LIBRARY) $(OBJECTS)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -Wall -Iinclude $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJECTS) $(LIBRARY) examples/nptest.so
@@ -21,4 +21,4 @@ clean:
 test: $(TEST)
 
 $(TEST) : $(LIBRARY)
-	$(CC) $(CFLAGS) -shared -o examples/nptest.so examples/test.c $(LIBRARY)
+	$(CC) -Wall -Iinclude $(CFLAGS) -shared -o examples/nptest.so examples/test.c $(LIBRARY)
