@@ -63,7 +63,7 @@ PA_Destroy (void* pointer)
 NPObject*
 Class_Allocate (NPP plugin, NPClass* klass)
 {
-	return PA_Object(klass, PA_Self(plugin));
+	return PA_Object(klass, plugin, PA_Self(plugin));
 }
 
 bool

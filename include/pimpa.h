@@ -34,7 +34,7 @@ bool PA_Destroy (void* self);
 
 NPObject* PA_Interface (NPP plugin);
 
-NPObject* PA_Object (NPP plugin, NPClass* klass, void* data);
+NPObject* PA_Object (NPClass* klass, NPP plugin, void* data);
 void* PA_Private (NPObject* object);
 NPP PA_Plugin (NPObject* object);
 void* PA_Self (NPP plugin);

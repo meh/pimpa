@@ -120,7 +120,7 @@ typedef struct PAObject {
 } PAObject;
 
 NPObject*
-PA_Object (NPP plugin, NPClass* klass, void* data)
+PA_Object (NPClass* klass, NPP plugin, void* data)
 {
 	PAObject* object = NPN_MemAlloc(sizeof(PAObject));
 
