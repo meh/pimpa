@@ -35,12 +35,8 @@ NPP_Destroy (NPP plugin, NPSavedData** saved)
 {
 	(void) saved;
 
-	if (PA_Destroy(plugin->pdata)) {
-		return NPERR_NO_ERROR;
-	}
-	else {
-		return NPERR_GENERIC_ERROR;
-	}
+	return PA_Destroy(plugin->pdata) ?
+		NPERR_NO_ERROR : NPERR_GENERIC_ERROR;
 }
 
 PA_EXPORT(NPError)
@@ -65,7 +61,8 @@ NPP_NewStream (NPP plugin, NPMIMEType type, NPStream* stream, NPBool seekable, u
 }
 
 PA_EXPORT(NPError)
-NPP_DestroyStream (NPP plugin, NPStream* stream, NPReason reason) {
+NPP_DestroyStream (NPP plugin, NPStream* stream, NPReason reason)
+{
 	(void) plugin;
 	(void) stream;
 	(void) reason;
