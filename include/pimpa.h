@@ -53,10 +53,4 @@ PA_EXPORT(NPObject*) PA_Object (NPClass* klass, void* data);
 PA_EXPORT(void*) PA_Private (NPObject* object);
 PA_EXPORT(void*) PA_Self (NPP plugin);
 
-#define LOG(format, ...) { \
-	FILE* file = fopen("/tmp/test.log", "a"); \
-	fprintf(file, format, ## __VA_ARGS__); \
-	fclose(file); \
-}
-
 #endif

@@ -130,8 +130,6 @@ NPP_URLNotify (NPP plugin, const char* url, NPReason reason, void* notifyData)
 PA_EXPORT(NPError)
 NPP_GetValue (NPP plugin, NPPVariable type, void* value)
 {
-	LOG("NPP_GetValue: %d\n", type);
-
 	switch (type) {
 		case NPPVpluginScriptableNPObject: {
 			NPObject* object = PA_Interface(plugin);

@@ -63,8 +63,6 @@ PA_Destroy (void* pointer)
 NPObject*
 Class_Allocate (NPP plugin, NPClass* klass)
 {
-	LOG("Class_Allocate: called\n");
-
 	return PA_Object(klass, PA_Self(plugin));
 }
 
@@ -73,8 +71,6 @@ Class_HasMethod (NPObject* self, NPIdentifier name)
 {
 	(void) self;
 	(void) name;
-
-	LOG("Class_HasMethod: called\n");
 
 	return false;
 }
@@ -85,8 +81,6 @@ Class_HasProperty (NPObject* self, NPIdentifier name)
 	(void) self;
 	(void) name;
 
-	LOG("Class_HasProperty: called\n");
-
 	return true;
 }
 
@@ -94,8 +88,6 @@ bool
 Class_GetProperty (NPObject* self, NPIdentifier name, NPVariant* result)
 {
 	(void) name;
-
-	LOG("Class_HasProperty: called\n");
 
 	Private* data = PA_Private(self);
 	INT32_TO_NPVARIANT(data->number, *result);
@@ -108,8 +100,6 @@ Class_InvokeDefault (NPObject* self, const NPVariant* args, uint32_t count, NPVa
 {
 	(void) args;
 	(void) count;
-
-	LOG("Class_InvokeDefault: called\n");
 
 	Private* data = PA_Private(self);
 	INT32_TO_NPVARIANT(data->number, *result);
@@ -128,7 +118,5 @@ struct NPClass Class = {
 PA_EXPORT(NPObject*)
 PA_Interface (NPP plugin)
 {
-	LOG("PA_Interface: called\n");
-
 	return NPN_CreateObject(plugin, &Class);
 }
