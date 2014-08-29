@@ -9,10 +9,6 @@
 #ifndef _PIMPA_H
 #define _PIMPA_H
 
-#ifdef __unix
-#define XP_UNIX 1
-#endif
-
 #include <npapi/npapi.h>
 #include <npapi/npfunctions.h>
 #include <npapi/npruntime.h>
