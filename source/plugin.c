@@ -139,7 +139,7 @@ NPP_GetValue (NPP plugin, NPPVariable type, void* value)
 			return NPERR_INVALID_PARAM;
 	}
 
-  return NPERR_GENERIC_ERROR;
+  return NPERR_NO_ERROR;
 }
 
 PA_EXPORT(NPError)
