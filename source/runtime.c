@@ -181,15 +181,15 @@ NP_GetValue (void* plugin, NPPVariable type, void* value)
 }
 
 NPError
-NPN_GetURL (NPP instance, const char* url, const char* window)
+NPN_GetURL (NPP plugin, const char* url, const char* window)
 {
-	return _browser->geturl(instance, url, window);
+	return _browser->geturl(plugin, url, window);
 }
 
 NPError
-NPN_PostURL (NPP instance, const char* url, const char* window, uint32_t len, const char* buf, NPBool file)
+NPN_PostURL (NPP plugin, const char* url, const char* window, uint32_t len, const char* buf, NPBool file)
 {
-	return _browser->posturl(instance, url, window, len, buf, file);
+	return _browser->posturl(plugin, url, window, len, buf, file);
 }
 
 NPError
@@ -199,33 +199,33 @@ NPN_RequestRead (NPStream* stream, NPByteRange* rangeList)
 }
 
 NPError
-NPN_NewStream (NPP instance, NPMIMEType type, const char* window, NPStream** stream)
+NPN_NewStream (NPP plugin, NPMIMEType type, const char* window, NPStream** stream)
 {
-	return _browser->newstream(instance, type, window, stream);
+	return _browser->newstream(plugin, type, window, stream);
 }
 
 int32_t
-NPN_Write (NPP instance, NPStream* stream, int32_t len, void* buffer)
+NPN_Write (NPP plugin, NPStream* stream, int32_t len, void* buffer)
 {
-	return _browser->write(instance, stream, len, buffer);
+	return _browser->write(plugin, stream, len, buffer);
 }
 
 NPError
-NPN_DestroyStream (NPP instance, NPStream* stream, NPReason reason)
+NPN_DestroyStream (NPP plugin, NPStream* stream, NPReason reason)
 {
-	return _browser->destroystream(instance, stream, reason);
+	return _browser->destroystream(plugin, stream, reason);
 }
 
 void
-NPN_Status (NPP instance, const char* message)
+NPN_Status (NPP plugin, const char* message)
 {
-	_browser->status(instance, message);
+	_browser->status(plugin, message);
 }
 
 const char*
-NPN_UserAgent (NPP instance)
+NPN_UserAgent (NPP plugin)
 {
-	return _browser->uagent(instance);
+	return _browser->uagent(plugin);
 }
 
 void*
@@ -253,45 +253,45 @@ NPN_ReloadPlugins (NPBool reloadPages)
 }
 
 NPError
-NPN_GetURLNotify (NPP instance, const char* url, const char* window, void* notifyData)
+NPN_GetURLNotify (NPP plugin, const char* url, const char* window, void* notifyData)
 {
-	return _browser->geturlnotify(instance, url, window, notifyData);
+	return _browser->geturlnotify(plugin, url, window, notifyData);
 }
 
 NPError
-NPN_PostURLNotify (NPP instance, const char* url, const char* window, uint32_t len, const char* buf, NPBool file, void* notifyData)
+NPN_PostURLNotify (NPP plugin, const char* url, const char* window, uint32_t len, const char* buf, NPBool file, void* notifyData)
 {
-	return _browser->posturlnotify(instance, url, window, len, buf, file, notifyData);
+	return _browser->posturlnotify(plugin, url, window, len, buf, file, notifyData);
 }
 
 NPError
-NPN_GetValue (NPP instance, NPNVariable variable, void* ret_value)
+NPN_GetValue (NPP plugin, NPNVariable variable, void* ret_value)
 {
-	return _browser->getvalue(instance, variable, ret_value);
+	return _browser->getvalue(plugin, variable, ret_value);
 }
 
 NPError
-NPN_SetValue (NPP instance, NPPVariable variable, void* value)
+NPN_SetValue (NPP plugin, NPPVariable variable, void* value)
 {
-	return _browser->setvalue(instance, variable, value);
+	return _browser->setvalue(plugin, variable, value);
 }
 
 void
-NPN_InvalidateRect (NPP instance, NPRect* rect)
+NPN_InvalidateRect (NPP plugin, NPRect* rect)
 {
-	_browser->invalidaterect(instance, rect);
+	_browser->invalidaterect(plugin, rect);
 }
 
 void
-NPN_InvalidateRegion (NPP instance, NPRegion region)
+NPN_InvalidateRegion (NPP plugin, NPRegion region)
 {
-	_browser->invalidateregion(instance, region);
+	_browser->invalidateregion(plugin, region);
 }
 
 void
-NPN_ForceRedraw (NPP instance)
+NPN_ForceRedraw (NPP plugin)
 {
-	_browser->forceredraw(instance);
+	_browser->forceredraw(plugin);
 }
 
 NPIdentifier
@@ -331,9 +331,9 @@ NPN_IntFromIdentifier (NPIdentifier identifier)
 }
 
 NPObject*
-NPN_CreateObject (NPP instance, NPClass* klass)
+NPN_CreateObject (NPP plugin, NPClass* klass)
 {
-	return _browser->createobject(instance, klass);
+	return _browser->createobject(plugin, klass);
 }
 
 NPObject*
@@ -349,51 +349,51 @@ NPN_ReleaseObject (NPObject* obj)
 }
 
 bool
-NPN_Invoke (NPP instance, NPObject* obj, NPIdentifier methodName, const NPVariant* args, uint32_t argCount, NPVariant* result)
+NPN_Invoke (NPP plugin, NPObject* obj, NPIdentifier methodName, const NPVariant* args, uint32_t argCount, NPVariant* result)
 {
-	return _browser->invoke(instance, obj, methodName, args, argCount, result);
+	return _browser->invoke(plugin, obj, methodName, args, argCount, result);
 }
 
 bool
-NPN_InvokeDefault (NPP instance, NPObject* obj, const NPVariant* args, uint32_t argCount, NPVariant* result)
+NPN_InvokeDefault (NPP plugin, NPObject* obj, const NPVariant* args, uint32_t argCount, NPVariant* result)
 {
-	return _browser->invokeDefault(instance, obj, args, argCount, result);
+	return _browser->invokeDefault(plugin, obj, args, argCount, result);
 }
 
 bool
-NPN_Evaluate (NPP instance, NPObject* obj, NPString* script, NPVariant* result)
+NPN_Evaluate (NPP plugin, NPObject* obj, NPString* script, NPVariant* result)
 {
-	return _browser->evaluate(instance, obj, script, result);
+	return _browser->evaluate(plugin, obj, script, result);
 }
 
 bool
-NPN_GetProperty (NPP instance, NPObject* obj, NPIdentifier propertyName, NPVariant* result)
+NPN_GetProperty (NPP plugin, NPObject* obj, NPIdentifier propertyName, NPVariant* result)
 {
-	return _browser->getproperty(instance, obj, propertyName, result);
+	return _browser->getproperty(plugin, obj, propertyName, result);
 }
 
 bool
-NPN_SetProperty (NPP instance, NPObject* obj, NPIdentifier propertyName, const NPVariant* value)
+NPN_SetProperty (NPP plugin, NPObject* obj, NPIdentifier propertyName, const NPVariant* value)
 {
-	return _browser->setproperty(instance, obj, propertyName, value);
+	return _browser->setproperty(plugin, obj, propertyName, value);
 }
 
 bool
-NPN_RemoveProperty (NPP instance, NPObject* obj, NPIdentifier propertyName)
+NPN_RemoveProperty (NPP plugin, NPObject* obj, NPIdentifier propertyName)
 {
-	return _browser->removeproperty(instance, obj, propertyName);
+	return _browser->removeproperty(plugin, obj, propertyName);
 }
 
 bool
-NPN_HasProperty (NPP instance, NPObject* obj, NPIdentifier propertyName)
+NPN_HasProperty (NPP plugin, NPObject* obj, NPIdentifier propertyName)
 {
-	return _browser->hasproperty(instance, obj, propertyName);
+	return _browser->hasproperty(plugin, obj, propertyName);
 }
 
 bool
-NPN_HasMethod (NPP instance, NPObject* obj, NPIdentifier propertyName)
+NPN_HasMethod (NPP plugin, NPObject* obj, NPIdentifier propertyName)
 {
-	return _browser->hasmethod(instance, obj, propertyName);
+	return _browser->hasmethod(plugin, obj, propertyName);
 }
 
 void
@@ -409,109 +409,109 @@ NPN_SetException (NPObject* obj, const NPUTF8* message)
 }
 
 void
-NPN_PushPopupsEnabledState (NPP instance, NPBool enabled)
+NPN_PushPopupsEnabledState (NPP plugin, NPBool enabled)
 {
-	_browser->pushpopupsenabledstate(instance, enabled);
+	_browser->pushpopupsenabledstate(plugin, enabled);
 }
 
 void
-NPN_PopPopupsEnabledState (NPP instance)
+NPN_PopPopupsEnabledState (NPP plugin)
 {
-	_browser->poppopupsenabledstate(instance);
+	_browser->poppopupsenabledstate(plugin);
 }
 
 bool
-NPN_Enumerate (NPP instance, NPObject* obj, NPIdentifier* *identifier, uint32_t* count)
+NPN_Enumerate (NPP plugin, NPObject* obj, NPIdentifier* *identifier, uint32_t* count)
 {
-	return _browser->enumerate(instance, obj, identifier, count);
+	return _browser->enumerate(plugin, obj, identifier, count);
 }
 
 void
-NPN_PluginThreadAsyncCall (NPP instance, void (*func)(void* ), void* userData)
+NPN_PluginThreadAsyncCall (NPP plugin, void (*func)(void* ), void* userData)
 {
-	_browser->pluginthreadasynccall(instance, func, userData);
+	_browser->pluginthreadasynccall(plugin, func, userData);
 }
 
 bool
-NPN_Construct (NPP instance, NPObject* obj, const NPVariant* args, uint32_t argCount, NPVariant* result)
+NPN_Construct (NPP plugin, NPObject* obj, const NPVariant* args, uint32_t argCount, NPVariant* result)
 {
-	return _browser->construct(instance, obj, args, argCount, result);
+	return _browser->construct(plugin, obj, args, argCount, result);
 }
 
 NPError
-NPN_GetValueForURL (NPP instance, NPNURLVariable variable, const char* url, char* *value, uint32_t* len)
+NPN_GetValueForURL (NPP plugin, NPNURLVariable variable, const char* url, char* *value, uint32_t* len)
 {
-	return _browser->getvalueforurl(instance, variable, url, value, len);
+	return _browser->getvalueforurl(plugin, variable, url, value, len);
 }
 
 NPError
-NPN_SetValueForURL (NPP instance, NPNURLVariable variable, const char* url, const char* value, uint32_t len)
+NPN_SetValueForURL (NPP plugin, NPNURLVariable variable, const char* url, const char* value, uint32_t len)
 {
-	return _browser->setvalueforurl(instance, variable, url, value, len);
+	return _browser->setvalueforurl(plugin, variable, url, value, len);
 }
 
 NPError
-NPN_GetAuthenticationInfo (NPP instance, const char* protocol, const char* host, int32_t port, const char* scheme, const char* realm, char* *username, uint32_t* ulen, char* *password, uint32_t* plen)
+NPN_GetAuthenticationInfo (NPP plugin, const char* protocol, const char* host, int32_t port, const char* scheme, const char* realm, char* *username, uint32_t* ulen, char* *password, uint32_t* plen)
 {
-	return _browser->getauthenticationinfo(instance, protocol, host, port, scheme, realm, username, ulen, password, plen);
+	return _browser->getauthenticationinfo(plugin, protocol, host, port, scheme, realm, username, ulen, password, plen);
 }
 
 uint32_t
-NPN_ScheduleTimer (NPP instance, uint32_t interval, NPBool repeat, void (*timerFunc)(NPP instance, uint32_t timerID))
+NPN_ScheduleTimer (NPP plugin, uint32_t interval, NPBool repeat, void (*timerFunc)(NPP plugin, uint32_t timerID))
 {
-	return _browser->scheduletimer(instance, interval, repeat, timerFunc);
+	return _browser->scheduletimer(plugin, interval, repeat, timerFunc);
 }
 
 void
-NPN_UnscheduleTimer (NPP instance, uint32_t timerID)
+NPN_UnscheduleTimer (NPP plugin, uint32_t timerID)
 {
-	_browser->unscheduletimer(instance, timerID);
+	_browser->unscheduletimer(plugin, timerID);
 }
 
 NPError
-NPN_PopUpContextMenu (NPP instance, NPMenu* menu)
+NPN_PopUpContextMenu (NPP plugin, NPMenu* menu)
 {
-	return _browser->popupcontextmenu(instance, menu);
+	return _browser->popupcontextmenu(plugin, menu);
 }
 
 NPBool
-NPN_ConvertPoint (NPP instance, double sourceX, double sourceY, NPCoordinateSpace sourceSpace, double* destX, double* destY, NPCoordinateSpace destSpace)
+NPN_ConvertPoint (NPP plugin, double sourceX, double sourceY, NPCoordinateSpace sourceSpace, double* destX, double* destY, NPCoordinateSpace destSpace)
 {
-	return _browser->convertpoint(instance, sourceX, sourceY, sourceSpace, destX, destY, destSpace);
+	return _browser->convertpoint(plugin, sourceX, sourceY, sourceSpace, destX, destY, destSpace);
 }
 
 NPBool
-NPN_HandleEvent (NPP instance, void* event, NPBool handled)
+NPN_HandleEvent (NPP plugin, void* event, NPBool handled)
 {
-	return _browser->handleevent(instance, event, handled);
+	return _browser->handleevent(plugin, event, handled);
 }
 
 NPBool
-NPN_UnfocusInstance (NPP instance, NPFocusDirection direction)
+NPN_UnfocusInstance (NPP plugin, NPFocusDirection direction)
 {
-	return _browser->unfocusinstance(instance, direction);
+	return _browser->unfocusinstance(plugin, direction);
 }
 
 void
-NPN_URLRedirectResponse (NPP instance, void* notifyData, NPBool allow)
+NPN_URLRedirectResponse (NPP plugin, void* notifyData, NPBool allow)
 {
-	_browser->urlredirectresponse(instance, notifyData, allow);
+	_browser->urlredirectresponse(plugin, notifyData, allow);
 }
 
 NPError
-NPN_InitAsyncSurface (NPP instance, NPSize* size, NPImageFormat format, void* initData, NPAsyncSurface* surface)
+NPN_InitAsyncSurface (NPP plugin, NPSize* size, NPImageFormat format, void* initData, NPAsyncSurface* surface)
 {
-	return _browser->initasyncsurface(instance, size, format, initData, surface);
+	return _browser->initasyncsurface(plugin, size, format, initData, surface);
 }
 
 NPError
-NPN_FinalizeAsyncSurface (NPP instance, NPAsyncSurface* surface)
+NPN_FinalizeAsyncSurface (NPP plugin, NPAsyncSurface* surface)
 {
-	return _browser->finalizeasyncsurface(instance, surface);
+	return _browser->finalizeasyncsurface(plugin, surface);
 }
 
 void
-NPN_SetCurrentAsyncSurface (NPP instance, NPAsyncSurface* surface, NPRect* changed)
+NPN_SetCurrentAsyncSurface (NPP plugin, NPAsyncSurface* surface, NPRect* changed)
 {
-	_browser->setcurrentasyncsurface(instance, surface, changed);
+	_browser->setcurrentasyncsurface(plugin, surface, changed);
 }
