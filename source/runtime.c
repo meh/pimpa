@@ -219,7 +219,7 @@ NPN_DestroyStream (NPP instance, NPStream* stream, NPReason reason)
 void
 NPN_Status (NPP instance, const char* message)
 {
-	return _browser->status(instance, message);
+	_browser->status(instance, message);
 }
 
 const char*
