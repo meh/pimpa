@@ -1,6 +1,6 @@
 pimpa
 =====
-**pima** is library to help develop clean scriptable-only NPAPI plugins in C,
+**pimpa** is library to help develop clean scriptable-only NPAPI plugins in C,
 mostly targeted at (Overwolf)[http://overwolf.com].
 
 Callbacks
