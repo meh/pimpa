@@ -11,12 +11,6 @@
 #include <string.h>
 
 static void
-_deallocate (NPObject* self)
-{
-	NPN_MemFree(self);
-}
-
-static void
 _invalidate (NPObject* self)
 {
 	(void) self;
@@ -129,7 +123,6 @@ PA_Object (NPClass* klass, NPP plugin, void* data)
 		klass->structVersion = NP_CLASS_STRUCT_VERSION;
 	}
 
-	if (!klass->deallocate)     klass->deallocate     = _deallocate;
 	if (!klass->invalidate)     klass->invalidate     = _invalidate;
 	if (!klass->hasMethod)      klass->hasMethod      = _hasMethod;
 	if (!klass->invoke)         klass->invoke         = _invoke;
